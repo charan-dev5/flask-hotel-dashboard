@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hotel Booking Dashboard</title>
+    </head>
+    <body>
+        <h1>Hotel Booking Dashboard</h1>
+
+        <h2>Add Booking</h2>
+        <form method="POST" action="/add">
+            <input type="text" name="guest_name" placeholder="Guest Name">
+            <input type="text" name="room_number" placeholder="Room Number">
+            <input type="text" name="check_in" placeholder="Check In (YYYY-MM-DD)">
+            <input type="text" name="check_out" placeholder="Check Out (YYYY-MM-DD)">
+            <button type="submit">Add Booking</button>
+        </form>
+
+        <h2>All Bookings</h2>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Guest Name</th>
+                <th>Room</th>
+                <th>Check In</th>
+                <th>Check Out</th>
+                <th>Action</th>
+            </tr>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking["id"] }}</td>
+                <td>{{ booking["guest_name"] }}</td>
+                <td>{{ booking["room_number"] }}</td>
+                <td>{{ booking["check_in"] }}</td>
+                <td>{{ booking["check_out"] }}</td>
+                <td><a href="/delete/{{ booking['id'] }}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+    </body>
+</html>
